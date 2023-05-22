@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  mysql:
+    image: bitnami/mysql:8.0
+    command: mysqld --default-authentication-plugin=mysql_native_password
+
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=shopper
+      - MYSQL_USER=userShopper
+      - MYSQL_PASSWORD=userShopper_password
+      - MYSQL_CHARACTER_SET=utf8
+      - MYSQL_COLLATION=utf8_general_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/bitnami/mysql
+      - ./config:/docker-entrypoint-initdb.d
+    restart: unless stopped
+
+volumes:
+  mysql_data:
+    driver: local

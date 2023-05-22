@@ -126,8 +126,8 @@ export async function uploadCSV(request: FastifyRequest, reply: FastifyReply) {
         }
       }
 
-      // console.log(valorDeCusto)
-      // console.log(novoValor)
+      //   console.log(valorDeCusto)
+      //   console.log(novoValor)
 
       const isTolerance = isWithinTolerance({
         newValue,
@@ -138,11 +138,11 @@ export async function uploadCSV(request: FastifyRequest, reply: FastifyReply) {
         codigo: nameOfPack.code,
         nome: nameOfPack.name,
         precoAtual: nameOfPack.sales_price,
-        novoPreco: Number(newValue),
+        novoPreco: Number(novoValor),
         erros: [],
       }
 
-      if (!newValue) {
+      if (!novoValor) {
         produtoAtualizado.erros.push({ error: 'Valor Errado' })
       }
       if (isTolerance.result === false) {
